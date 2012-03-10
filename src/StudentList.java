@@ -48,9 +48,6 @@ public class StudentList {
 			headNode = headNode.getNext();
 			return oldHead;
 		}
-//		System.out.println(index);
-//		System.out.println("previous: " + getNode(index - 1));
-//		System.out.println("next:  " + getNode(index + 1));
 		StudentNode currentNode = getNode(index);
 		getNode(index-1).setNext(getNode(index+1));
 		currentNode.setNext(null);//returns "nurtured" node aka without next reference
@@ -107,7 +104,6 @@ public class StudentList {
 		int i = 0;
 		if (isEmpty()){
 			setHeadNode(s);
-//			System.out.println("Empty");
 		}
 		
 		else{
@@ -116,13 +112,11 @@ public class StudentList {
 					sLast = s.getValue().getLastName();
 			
 			while((cLast.compareTo(sLast) <= 0)){
-				//System.out.println(currentNode);
 				i++;
 				if(currentNode.getNext() == null)
 					break;
 				currentNode = currentNode.getNext();
 				cLast = currentNode.getValue().getLastName();
-				//System.out.println("move to next");
 			}
 			
 			//Moves to first names after comparing last
@@ -136,9 +130,7 @@ public class StudentList {
 					System.out.println("Win2");
 				}
 			}
-//			System.out.println(i);
 			insertAt(s, i);
-			//System.out.println(this);
 		}
 		
 		length++;
@@ -164,12 +156,10 @@ public class StudentList {
 	public void insertAt(StudentNode s, int index){
 		if((index >= 0) && (index <= length)){
 			if (index == 0){
-//				System.out.println("Insert at 0");
 				s.setNext(headNode);
 				headNode = s;
 				return;
 			}
-//			System.out.println("Insert at " + index);
 			int i = 0;
 			StudentNode currentNode = headNode;
 			while((i < index-1)){
@@ -185,7 +175,6 @@ public class StudentList {
 			length++;
 			return;
 		}
-//		System.out.println("Index: " + index + " is invalid");
 	}
 	
 	public void sortByAverage(){
@@ -195,7 +184,6 @@ public class StudentList {
 		for(; current.getNext() != null; current = current.getNext()){
 			StudentNode temp = new StudentNode(current.getValue());
 			sorted.insertByAverage(temp);
-			//System.out.println(current.getNext());
 		}
 		StudentNode temp = new StudentNode(current.getValue());
 		sorted.insertByAverage(temp);
@@ -208,7 +196,6 @@ public class StudentList {
 		for(; current.getNext() != null; current = current.getNext()){
 			StudentNode temp = new StudentNode(current.getValue());
 			sorted.insertByLastName(temp);
-			//System.out.println(current.getNext());
 		}
 		StudentNode temp = new StudentNode(current.getValue());
 		sorted.insertByLastName(temp);
@@ -223,7 +210,6 @@ public class StudentList {
 		int i = 0;
 		if (isEmpty()){
 			setHeadNode(s);
-//			System.out.println("Empty");
 		}
 		
 		else{
@@ -232,7 +218,6 @@ public class StudentList {
 			int sGPA = s.getValue().getGPA();
 			
 			while((cGPA >= sGPA)){
-				//System.out.println(currentNode);
 				i++;
 				if(currentNode.getNext() == null)
 					break;
@@ -246,13 +231,11 @@ public class StudentList {
 				String cLast = currentNode.getValue().getLastName(),
 				sLast = s.getValue().getLastName();
 				while((cLast.compareTo(sLast) <= 0)){
-					//System.out.println(currentNode);
 					i++;
 					if(currentNode.getNext() == null)
 						break;
 					currentNode = currentNode.getNext();
 					cLast = currentNode.getValue().getLastName();
-					//System.out.println("move to next");
 				}
 				
 				//Moves to first names after comparing last
@@ -267,11 +250,8 @@ public class StudentList {
 					}
 				}
 			}
-//			System.out.println(i);
 			insertAt(s, i);
-			//System.out.println(this);
 		}
-//		System.out.println("Inserting " + s);
 		length++;
 		return i;
 	}
