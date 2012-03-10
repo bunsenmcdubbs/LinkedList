@@ -4,31 +4,31 @@ public class FinalExam {
 	public static void main(String[] args) {
 		StudentList l = new StudentList();
 		
-//		System.out.println("1Thomas Edgars\n");
+		System.out.println("\n1Thomas Edgars");
 		l.insertByLastName(new Student("Thomas","Edgars",89));
 		
-//		System.out.println("2Jennifer Smith\n");
+		System.out.println("\n2Jennifer Smith");
 		l.insertByLastName(new Student("Jennifer","Smith",86));
 		
-//		System.out.println("3Harold Umberton\n");
+		System.out.println("\n3Harold Umberton");
 		l.insertByLastName(new Student("Harold","Umberton",78));
 		
-//		System.out.println("4Frank Martin\n");
+		System.out.println("\n4Frank Martin");
 		l.insertByLastName(new Student("Frank","Martin",60));
 		
-//		System.out.println("5Jeremy Andrews\n");
+		System.out.println("\n5Jeremy Andrews");
 		l.insertByLastName(new Student("Jeremy","Andrews",83));
 		
-//		System.out.println("6Laura Roberts\n");
+		System.out.println("\n6Laura Roberts");
 		l.insertAt(new Student("Laura","Roberts",93), 3);
 		
-//		System.out.println("7Adele Lincoln\n");
+		System.out.println("\n7Adele Lincoln");
 		l.insertByLastName(new Student("Adele","Lincoln",85));
 		
-//		System.out.println("8Peter Smith\n");
+		System.out.println("\n8Peter Smith");
 		l.insertByLastName(new Student("Peter","Smith",91));
 		
-//		System.out.println("9Larry Peterson\n");
+		System.out.println("\n9Larry Peterson");
 		l.insertByLastName(new Student("Larry","Peterson",72));
 		
 		System.out.println("List:\n" + l);
