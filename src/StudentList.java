@@ -35,7 +35,7 @@ public class StudentList {
 		while(currentNode.getNext() != null){
 			currentNode = currentNode.getNext();
 		}
-		
+		s.setPrevious(currentNode);
 		currentNode.setNext(s);
 	}
 	
@@ -50,8 +50,9 @@ public class StudentList {
 		}
 		StudentNode currentNode = getNode(index);
 		getNode(index-1).setNext(getNode(index+1));
+		getNode(index+1).setPrevious(getNode(index-1));
 		currentNode.setNext(null);//returns "nurtured" node aka without next reference
-		
+		currentNode.setPrevious(null);
 //		length--;
 		return currentNode;
 	}
@@ -162,6 +163,7 @@ public class StudentList {
 //		System.out.println(isValid(index));
 		if (index == 0){
 			s.setNext(headNode);
+			headNode.setPrevious(s);
 			headNode = s;
 			return;
 		}
@@ -177,7 +179,10 @@ public class StudentList {
 			}
 			
 			s.setNext(currentNode.getNext());
+			currentNode.getNext().setPrevious(s);
+			s.setPrevious(currentNode);
 			currentNode.setNext(s);
+			
 //			length++;
 			
 			return;
