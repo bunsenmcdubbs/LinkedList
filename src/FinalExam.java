@@ -26,6 +26,19 @@ public class FinalExam {
 		System.out.println("Sort By Last Name");
 		l.sortByLastName();
 		System.out.println("List:\n" + l);
+		
+		System.out.println("\n\nBackwards");
+		StudentNode end = null;
+		for (StudentNode currentNode = l.getNode(0); currentNode.getNext() != null; currentNode = currentNode.getNext()){
+			end = currentNode;
+		}
+		end = end.getNext();
+		StudentNode currentNode = null;
+		for (currentNode = end; currentNode.getPrevious() != null; currentNode = currentNode.getPrevious()){
+			System.out.println(currentNode);
+		}
+		System.out.println(currentNode);
+
 	}
 
 }
