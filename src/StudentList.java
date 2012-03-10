@@ -106,7 +106,6 @@ public class StudentList {
 		int i = 0;
 		if (isEmpty()){
 			setHeadNode(s);
-			System.out.println("empty");
 		}
 		
 		else{
