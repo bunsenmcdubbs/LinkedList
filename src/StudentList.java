@@ -170,7 +170,7 @@ public class StudentList {
 		else if(isValid(index)){
 			int i = 0;
 			StudentNode currentNode = headNode;
-			while((i < index-1)){
+			while(i < index-1){
 				i++;
 				if (currentNode.getNext() != null)
 					currentNode = currentNode.getNext();
@@ -289,18 +289,6 @@ public class StudentList {
 			length++;
 		return length;
 	}
-	
-//	private int checkLength(){
-//		int i = 0;
-//		StudentNode currentNode = headNode;
-//		while(currentNode.getNext() != null){
-//			currentNode = currentNode.getNext();
-//			i++;
-//		}
-//		length = i;
-//		
-//		return length;
-//	}
 	
 	//Working
 	public StudentNode getNode(int index){
