@@ -2,7 +2,7 @@
 public class StudentList {
 	
 	private StudentNode headNode = null;
-	private int length;//TODO stop failing
+	//private int length;//TODO stop failing
 	public static final int END = -1;
 	public static final int START = 0;
 	
@@ -14,7 +14,7 @@ public class StudentList {
 	//Working
 	public StudentList(){
 		headNode = null;
-		length = 0;
+//		length = 0;
 	}
 	
 	//Working
@@ -24,7 +24,7 @@ public class StudentList {
 	
 	//Working
 	public void addStudent(StudentNode s){
-		length++;
+//		length++;
 		
 		if (isEmpty()){
 			setHeadNode(s);
@@ -52,7 +52,7 @@ public class StudentList {
 		getNode(index-1).setNext(getNode(index+1));
 		currentNode.setNext(null);//returns "nurtured" node aka without next reference
 		
-		length--;
+//		length--;
 		return currentNode;
 	}
 	
@@ -68,11 +68,12 @@ public class StudentList {
 	
 	public int find(Student s){
 		StudentNode currentNode = headNode;
-		for (int i = 0; i < length; i++){
+		for (int i = 0; currentNode.getNext() != null; currentNode = currentNode.getNext()){
 			if(s.equals(currentNode)){
 				return i;
 			}
 			currentNode = currentNode.getNext();
+			i++;
 		}
 		return -1;
 	}
@@ -83,14 +84,15 @@ public class StudentList {
 		String cName = currentNode.getValue().getFirstName()
 				+ " "
 				+ currentNode.getValue().getLastName();
-		for (int i = 0; i < length; i++){
+		for (int i = 0; currentNode.getNext() != null; currentNode = currentNode.getNext()){
 			if(name.equals(cName)){
-				return i;
+				return ++i;
 			}
 			currentNode = currentNode.getNext();
 			cName = currentNode.getValue().getFirstName()
 					+ " "
 					+ currentNode.getValue().getLastName();
+			i++;
 		}
 		return -1;
 	}
@@ -130,10 +132,11 @@ public class StudentList {
 					System.out.println("Win2");
 				}
 			}
+//			System.out.println(i);
 			insertAt(s, i);
 		}
 		
-		length++;
+//		length++;
 		return i;
 	}
 	
@@ -154,12 +157,15 @@ public class StudentList {
 	
 	//working NEXT
 	public void insertAt(StudentNode s, int index){
-		if((index >= 0) && (index <= length)){
-			if (index == 0){
-				s.setNext(headNode);
-				headNode = s;
-				return;
-			}
+//		System.out.println("Insert " + s + " at " + index);
+//		System.out.println(this);
+//		System.out.println(isValid(index));
+		if (index == 0){
+			s.setNext(headNode);
+			headNode = s;
+			return;
+		}
+		else if(isValid(index)){
 			int i = 0;
 			StudentNode currentNode = headNode;
 			while((i < index-1)){
@@ -172,7 +178,12 @@ public class StudentList {
 			
 			s.setNext(currentNode.getNext());
 			currentNode.setNext(s);
-			length++;
+//			length++;
+			
+			return;
+		}
+		else if (index == length()){
+			addStudent(s);
 			return;
 		}
 	}
@@ -252,32 +263,39 @@ public class StudentList {
 			}
 			insertAt(s, i);
 		}
-		length++;
+//		length++;
 		return i;
 	}
 	
 	public boolean isValid(int index) {
 		//checkLength();
-		System.out.println("Length: " + length);
-		return ((index < length) && (index >= 0));
+//		System.out.println("Length: " + length());
+		return ((index < length()) && (index >= 0));
 	}
 
 	//Working
 	public int length(){
+		if(isEmpty()){
+			return 0;
+		}
+		int length;
+		StudentNode currentNode = headNode;
+		for (length = 1; currentNode.getNext() != null; currentNode = currentNode.getNext())
+			length++;
 		return length;
 	}
 	
-	private int checkLength(){
-		int i = 0;
-		StudentNode currentNode = headNode;
-		while(currentNode.getNext() != null){
-			currentNode = currentNode.getNext();
-			i++;
-		}
-		length = i;
-		
-		return length;
-	}
+//	private int checkLength(){
+//		int i = 0;
+//		StudentNode currentNode = headNode;
+//		while(currentNode.getNext() != null){
+//			currentNode = currentNode.getNext();
+//			i++;
+//		}
+//		length = i;
+//		
+//		return length;
+//	}
 	
 	//Working
 	public StudentNode getNode(int index){
