@@ -4,7 +4,7 @@
  * sorting the list such as <code>sortByGPA</code>, <code>sortByLastName</code>.
  * <code>insertByLastName</code> and <code>insertByGPA</code> add <code>Student</code>
  * or <code>StudentNode</code>'s into a sorted list.
- * @author bunsen
+ * @author Andrew Dai
  *
  */
 public class StudentList {
