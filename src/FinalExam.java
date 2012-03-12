@@ -17,27 +17,31 @@ public class FinalExam {
 		
 		System.out.println("Removing Frank Martin");
 		l.remove("Frank Martin");
-		System.out.println("List:\n" + l);
+		System.out.println("List:\n" + l)  ;
 		
 		System.out.println("Sort By Average");
 		l.sortByAverage();
+		System.out.println("List:\n" + l);
+		
+		System.out.println("Add Alice Henderson");
+		l.insertByAverage(new Student("Alice", "Henderson", 96));
 		System.out.println("List:\n" + l);
 		
 		System.out.println("Sort By Last Name");
 		l.sortByLastName();
 		System.out.println("List:\n" + l);
 		
-		System.out.println("\n\nBackwards");
-		StudentNode end = null;
-		for (StudentNode currentNode = l.getNode(0); currentNode.getNext() != null; currentNode = currentNode.getNext()){
-			end = currentNode;
-		}
-		end = end.getNext();
-		StudentNode currentNode = null;
-		for (currentNode = end; currentNode.getPrevious() != null; currentNode = currentNode.getPrevious()){
-			System.out.println(currentNode);
-		}
-		System.out.println(currentNode);
+//		System.out.println("\n\nBackwards");
+//		StudentNode end = null;
+//		for (StudentNode currentNode = l.getNode(0); currentNode.getNext() != null; currentNode = currentNode.getNext()){
+//			end = currentNode;
+//		}
+//		end = end.getNext();
+//		StudentNode currentNode = null;
+//		for (currentNode = end; currentNode.getPrevious() != null; currentNode = currentNode.getPrevious()){
+//			System.out.println(currentNode);
+//		}
+//		System.out.println(currentNode);
 
 	}
 
