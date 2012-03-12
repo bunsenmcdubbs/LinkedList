@@ -1,30 +1,46 @@
-
+/**
+ * <code>StudentList</code> is a doubly linked list with <code>StudentNodes</code>.
+ * It has the normal "add", "remove" and "insert" methods. It also has methods for
+ * sorting the list such as <code>sortByGPA</code>, <code>sortByLastName</code>.
+ * <code>insertByLastName</code> and <code>insertByGPA</code> add <code>Student</code>
+ * or <code>StudentNode</code>'s into a sorted list.
+ * @author bunsen
+ *
+ */
 public class StudentList {
 	
 	private StudentNode headNode = null;
-	//private int length;//TODO stop failing
-	public static final int END = -1;
 	public static final int START = 0;
 	
-	//Working
+	/**
+	 * Constructor that takes a head node.
+	 * @param h headNode for the list
+	 */
 	public StudentList(StudentNode h){
 		addStudent(h);
 	}
 	
-	//Working
+	/**
+	 * Default constructor
+	 * the headnode remains null
+	 */
 	public StudentList(){
 		headNode = null;
-//		length = 0;
 	}
 	
-	//Working
+	/**
+	 * Appends a <code>Student</code> to the end of the list.
+	 * @param s - <code>Student</code> object
+	 */
 	public void addStudent(Student s){
 		this.addStudent(new StudentNode(s));
 	}
 	
-	//Working
+	/**
+	 * Appends a <code>StudentNode</code> to the end of the list.
+	 * @param s - <code>StudentNode</code> object
+	 */
 	public void addStudent(StudentNode s){
-//		length++;
 		
 		if (isEmpty()){
 			setHeadNode(s);
@@ -39,6 +55,11 @@ public class StudentList {
 		currentNode.setNext(s);
 	}
 	
+	/**
+	 * Removes the StudentNode from the list at the index provided and returns it.
+	 * @param index of the desired object to be removed
+	 * @return the the StudentNode at the <code>index</code>
+	 */
 	public StudentNode remove(int index){
 		if(index == -1){
 			return null;
@@ -51,22 +72,38 @@ public class StudentList {
 		StudentNode currentNode = getNode(index);
 		getNode(index-1).setNext(getNode(index+1));
 		getNode(index+1).setPrevious(getNode(index-1));
-		currentNode.setNext(null);//returns "nurtured" node aka without next reference
+		currentNode.setNext(null);//returns "nurtured" node aka without next and previous references
 		currentNode.setPrevious(null);
-//		length--;
 		return currentNode;
 	}
 	
+	/**
+	 * Removes and returns the first StudentNode whose Student value matches the Student
+	 * provided
+	 * @param s is the student to be removed from the list.
+	 * @return the StudentNode object
+	 */
 	public StudentNode remove(Student s){
 		int target = find(s);
 		return remove(target);
 	}
 	
+	/**
+	 * Removes and returns the first StudentNode whose Name (<first> <last>) matches the Student
+	 * provided
+	 * @param s is the student's name who is to be removed from the list.
+	 * @return the StudentNode object
+	 */
 	public StudentNode remove(String name){
 		int target = find(name);
 		return remove(target);
 	}
 	
+	/**
+	 * Finds and returns the index first of the StudentNode which matches the provided Student.
+	 * @param s Student
+	 * @return index of the student
+	 */
 	public int find(Student s){
 		StudentNode currentNode = headNode;
 		for (int i = 0; currentNode.getNext() != null; currentNode = currentNode.getNext()){
@@ -79,7 +116,11 @@ public class StudentList {
 		return -1;
 	}
 	
-	//Working
+	/**
+	 * Finds and returns the index first of the StudentNode whose Student's name matches the provided.
+	 * @param s Student
+	 * @return index of the student
+	 */
 	public int find(String name){
 		StudentNode currentNode = headNode;
 		String cName = currentNode.getValue().getFirstName()
@@ -98,11 +139,23 @@ public class StudentList {
 		return -1;
 	}
 	
+	/**
+	 * Takes a <code>Student</code> object and puts it in a <code>StudentNode</code> ojbect and
+	 * delegates to the other <code>insertByLastName(StudentNode)</code>.
+	 * @param s - Student to be inserted
+	 * @return index of where the Student was inserted
+	 */
 	public int insertByLastName(Student s){
 		return this.insertByLastName(new StudentNode(s));
 	}
 	
-	//Working
+	/**
+	 * Takes in a StudentNode and determines where the object should be insert and inserts it 
+	 * into the list.
+	 * Precondition: the list is already sorted by Last name
+	 * @param s the Student or StudentNode that is being inserted.
+	 * @return index
+	 */
 	public int insertByLastName(StudentNode s){
 		int i = 0;
 		if (isEmpty()){
@@ -133,34 +186,44 @@ public class StudentList {
 					System.out.println("Win2");
 				}
 			}
-//			System.out.println(i);
 			insertAt(s, i);
 		}
 		
-//		length++;
 		return i;
 	}
 	
-	//work
+	/**
+	 * Checks if the List is empty or not by querying the heard node
+	 * @return
+	 */
 	private boolean isEmpty() {
 		return (headNode == null);
 	}
 	
-	//work
+	/**
+	 * Sets the headNode of the project to the provided StudentNode.
+	 * @param s
+	 */
 	private void setHeadNode(StudentNode s) {
 		headNode = s;
 	}
-
-	//working
+	
+	/**
+	 * Inserts the Student into the list at the index
+	 * @param s - Student to be inserted
+	 * @param index - index to insert at
+	 */
 	public void insertAt(Student s, int index){
 		this.insertAt(new StudentNode(s), index);
 	}
 	
-	//working NEXT
+	/**
+	 * Inserts the StudentNode into the list at the index
+	 * @param s - Student to be inserted
+	 * @param index - index to insert at
+	 */
 	public void insertAt(StudentNode s, int index){
 //		System.out.println("Insert " + s + " at " + index);
-//		System.out.println(this);
-//		System.out.println(isValid(index));
 		if (index == 0){
 			s.setNext(headNode);
 			headNode.setPrevious(s);
@@ -183,8 +246,6 @@ public class StudentList {
 			s.setPrevious(currentNode);
 			currentNode.setNext(s);
 			
-//			length++;
-			
 			return;
 		}
 		else if (index == length()){
@@ -193,6 +254,9 @@ public class StudentList {
 		}
 	}
 	
+	/**
+	 * Goes through unsorted list and reorders/sorts all the Students by GPA/Average,
+	 */
 	public void sortByAverage(){
 		
 		StudentList sorted = new StudentList();
@@ -206,6 +270,9 @@ public class StudentList {
 		setHeadNode(sorted.getHeadNode());
 	}
 	
+	/**
+	 * Goes through unsorted list and reorders/sorts all the Students by last name
+	 */
 	public void sortByLastName(){
 		StudentList sorted = new StudentList();
 		StudentNode current = headNode;
@@ -218,10 +285,18 @@ public class StudentList {
 		setHeadNode(sorted.getHeadNode());
 	}
 	
+	/**
+	 * @returns the headNode of the list
+	 */
 	private StudentNode getHeadNode() {
 		return headNode;
 	}
-
+	
+	/**
+	 * If the grades are the same it moves to comparing alphabetical order
+	 * @param s
+	 * @return
+	 */
 	public int insertByAverage(StudentNode s){
 		int i = 0;
 		if (isEmpty()){
@@ -239,10 +314,9 @@ public class StudentList {
 					break;
 				currentNode = currentNode.getNext();
 				cGPA = currentNode.getValue().getGPA();
-				//System.out.println("move to next");
 			}
 			
-			//Moves to first names after comparing last
+			//Moves to last names after comparing GPA
 			if(cGPA == sGPA){
 				String cLast = currentNode.getValue().getLastName(),
 				sLast = s.getValue().getLastName();
@@ -268,17 +342,22 @@ public class StudentList {
 			}
 			insertAt(s, i);
 		}
-//		length++;
 		return i;
 	}
 	
+	/**
+	 * Checks if the provided index is valid
+	 * @param index
+	 * @return
+	 */
 	public boolean isValid(int index) {
-		//checkLength();
-//		System.out.println("Length: " + length());
 		return ((index < length()) && (index >= 0));
 	}
 
-	//Working
+	/**
+	 * Runs through the list and sets the length of the town. 
+	 * @return
+	 */
 	public int length(){
 		if(isEmpty()){
 			return 0;
@@ -290,7 +369,11 @@ public class StudentList {
 		return length;
 	}
 	
-	//Working
+	/**
+	 * 
+	 * @param index
+	 * @returns the StudentNode at index on the list
+	 */
 	public StudentNode getNode(int index){
 		
 		int i = 0;
@@ -302,11 +385,6 @@ public class StudentList {
 		}
 		
 		return currentNode;
-	}
-	
-	//Working
-	public StudentIterator addIterator(){
-		return new StudentIterator(headNode);
 	}
 	
 	public String toString(){
