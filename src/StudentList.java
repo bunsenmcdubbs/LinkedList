@@ -167,7 +167,7 @@ public class StudentList {
 			String cLast = currentNode.getValue().getLastName(),
 					sLast = s.getValue().getLastName();
 			
-			while((cLast.compareTo(sLast) <= 0)){
+			while((cLast.compareTo(sLast) < 0)){
 				i++;
 				if(currentNode.getNext() == null)
 					break;
@@ -176,14 +176,14 @@ public class StudentList {
 			}
 			
 			//Moves to first names after comparing last
-			if(cLast.equals(sLast)){
+			if(cLast.equalsIgnoreCase(sLast)){
 				String cFirst = currentNode.getValue().getFirstName(),
 						sFirst = s.getValue().getFirstName();
 				while(cFirst.compareTo(sFirst) < 0){
+					if(currentNode.getNext() == null)
+						break;
+					currentNode = currentNode.getNext();
 					i++;
-					if(currentNode.getNext() != null)
-						currentNode = currentNode.getNext();
-					System.out.println("Win2");
 				}
 			}
 			insertAt(s, i);
@@ -293,9 +293,24 @@ public class StudentList {
 	}
 	
 	/**
+	 * Precondition: the list must already be sorted in GPA-order for correct
+	 * functionality.
+	 * Inserts the Student into a sorted by GPA list in the correct spot.
 	 * If the grades are the same it moves to comparing alphabetical order
-	 * @param s
-	 * @return
+	 * @param s Student
+	 * @return index where it was inserted
+	 */
+	public int insertByAverage(Student s){
+		return insertByAverage(new StudentNode(s));
+	}
+	
+	/**
+	 * Precondition: the list must already be sorted in GPA-order for correct
+	 * functionality.
+	 * Inserts the StudentNode into a sorted by GPA list in the correct spot.
+	 * If the grades are the same it moves to comparing alphabetical order
+	 * @param s StudentNode
+	 * @return index where it was inserted
 	 */
 	public int insertByAverage(StudentNode s){
 		int i = 0;
@@ -319,8 +334,9 @@ public class StudentList {
 			//Moves to last names after comparing GPA
 			if(cGPA == sGPA){
 				String cLast = currentNode.getValue().getLastName(),
-				sLast = s.getValue().getLastName();
-				while((cLast.compareTo(sLast) <= 0)){
+						sLast = s.getValue().getLastName();
+				
+				while((cLast.compareTo(sLast) < 0)){
 					i++;
 					if(currentNode.getNext() == null)
 						break;
@@ -329,14 +345,14 @@ public class StudentList {
 				}
 				
 				//Moves to first names after comparing last
-				if(cLast.equals(sLast)){
+				if(cLast.equalsIgnoreCase(sLast)){
 					String cFirst = currentNode.getValue().getFirstName(),
 							sFirst = s.getValue().getFirstName();
 					while(cFirst.compareTo(sFirst) < 0){
+						if(currentNode.getNext() == null)
+							break;
+						currentNode = currentNode.getNext();
 						i++;
-						if(currentNode.getNext() != null)
-							currentNode = currentNode.getNext();
-						System.out.println("Win2");
 					}
 				}
 			}
