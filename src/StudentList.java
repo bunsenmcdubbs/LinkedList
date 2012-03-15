@@ -363,16 +363,16 @@ public class StudentList {
 	
 	/**
 	 * Checks if the provided index is valid
-	 * @param index
-	 * @return
+	 * @param index to be tested
+	 * @return true/false
 	 */
 	public boolean isValid(int index) {
 		return ((index < length()) && (index >= 0));
 	}
 
 	/**
-	 * Runs through the list and sets the length of the town. 
-	 * @return
+	 * Runs through the list and returns the length of the list. 
+	 * @return the length
 	 */
 	public int length(){
 		if(isEmpty()){
@@ -386,7 +386,6 @@ public class StudentList {
 	}
 	
 	/**
-	 * 
 	 * @param index
 	 * @returns the StudentNode at index on the list
 	 */
